@@ -1,4 +1,8 @@
 const db = require('../../db-conection');
+const express = require('express');
+
+const app = express();
+
 
 exports.clientes = (req, res) => {
 
@@ -8,11 +12,38 @@ exports.clientes = (req, res) => {
         res.send(result)
     })
 }
-  
-exports.cliente = (req, res) => {
 
-    let sql = ` SELECT * FROM cliente WHERE nome = ?`;
+exports.cliente = (req, res) => {
+    nome = req.params.id
+    console.log(req.params.id)
+    let sql = ` SELECT * FROM cliente WHERE id = ? `;
     let query = db.query(sql, req.params.name, (err, results) => {
+        if (err) throw err;
+        res.send(results);
+    })
+}
+  
+exports.cliente_nome = (req, res) => {
+    nome = req.params.nome
+    console.log(req.params.name)
+    let sql = ` SELECT * FROM cliente WHERE nome = ? `;
+    let query = db.query(sql, req.params.name, (err, results) => {
+        if (err) throw err;
+        res.send(results);
+    })
+}
+
+exports.cliente_email = (req,res) =>{
+    let sql = ` SELECT email FROM cliente WHERE email = ? `;
+    let query = db.query(sql, req.params.email, (err, results) => {
+        if (err) throw err;
+        res.send(results);
+    })
+}
+
+exports.cliente_numero = (req,res) =>{
+    let sql = ` SELECT numero FROM cliente WHERE numero = ? `;
+    let query = db.query(sql, req.params.numero, (err, results) => {
         if (err) throw err;
         res.send(results);
     })
@@ -21,7 +52,9 @@ exports.cliente = (req, res) => {
 exports.createCliente = (req, res) => {
 
     let cliente = req.body;
-    let sql = " INSERT INTO cliente (nome , email , numero , mensagem) VALUES (?,?,?,?) ";
+
+    let sql = ` INSERT INTO cliente (nome , email , numero , mensagem)
+                VALUES ( ?, ?, ?, ?)`
     let query = db.query(sql, [cliente.nome, cliente.email, cliente.numero, cliente.mensagem], (err, results) => {
         if (err) throw err;
         res.send(results)
