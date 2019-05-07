@@ -33,11 +33,12 @@ exports.cliente_nome = (req, res) => {
     })
 }
 
-exports.cliente_email = (req,res) =>{
-    let sql = ` SELECT email FROM cliente WHERE email = ? `;
-    let query = db.query(sql, req.params.email, (err, results) => {
+exports.cliente_verificarEmailNumero = (req,res) =>{
+    let sql = ` SELECT email,numero FROM cliente WHERE email = ? or numero = ?`;
+    let query = db.query(sql, [req.params.email, req.params.numero], (err, results) => {
         if (err) throw err;
         res.send(results);
+        return true;
     })
 }
 
