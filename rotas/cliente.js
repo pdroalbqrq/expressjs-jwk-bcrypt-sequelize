@@ -1,13 +1,9 @@
-const express = require('express');
-const cliente_controller = require('../controller/cliente/controller.js')
+const cliente_controller = require('../controller/cliente/cliente.js');
 var cors = require('cors');
 const bodyParser = require('body-parser');
-
-
-const app = express();
+const app = require('../index.js');
 
 app.use(cors());
-
 
 bodyParser.urlencoded({ extended: true })
 bodyParser.json({ extended: true })
@@ -25,4 +21,5 @@ app.get('/clientes/numero/:numero',cliente_controller.cliente_numero);
 
 app.post('/cliente', cliente_controller.createCliente);
 
-module.exports = app;
+module.exports = function(app) {
+}
