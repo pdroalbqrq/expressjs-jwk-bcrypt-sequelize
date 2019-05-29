@@ -8,17 +8,19 @@ exports.cabecalhos = (req, res) => {
 
 exports.alterHeader = (req, res) => {
   let header = req.body;
+  const { social, email, numero } = req.body;
 
   Cabecalho.update(
     {
-      social: header.social,
-      email: header.email,
-      numero: header.phone
+      social,
+      email,
+      numero,
+      usuarioId: req.params.userId
     },
     {
       where: { id: req.params.id }
     }
-  ).then(result => {    
-    res.send(req.body);
+  ).then(result => {
+    res.send(req.params.userId);
   });
 };

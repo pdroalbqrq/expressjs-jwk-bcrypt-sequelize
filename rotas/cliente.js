@@ -1,9 +1,6 @@
 const cliente_controller = require('../controller/cliente/cliente.js');
-var cors = require('cors');
 const bodyParser = require('body-parser');
 const app = require('../index.js');
-
-app.use(cors());
 
 bodyParser.urlencoded({ extended: true })
 bodyParser.json({ extended: true })
