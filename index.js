@@ -31,6 +31,6 @@ app.use('/', institucional);
 
 app.use('/', portfolio)
 
-app.listen('3000', ()=>{
+app.listen(process.env.PORT || '3000', ()=>{
     console.log('ouvindo na porta 3000');
 })
