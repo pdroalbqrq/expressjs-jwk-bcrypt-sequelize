@@ -1,14 +1,14 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('stabilejardim','root','', {
-    host: 'localhost',
-    dialect: 'mysql',
+const sequelize = new Sequelize(process.env.BD,process.env.USER,process.env.PASSWORD, {
+    host: process.env.HOST,
+    dialect: process.env.DIALECT,
     dialectOptions: {
-        // useUTC: false, //for reading from database
+
         dateStrings: true,
         typeCast: true,
         timezone: "+0:00"
       },
-      timezone: "+0:00", //for writing to database
+      timezone: "+0:00", 
 });
 
 sequelize.authenticate().then(()=>{

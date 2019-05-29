@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = module.exports = express();
+require("dotenv").config();
 
 app.use(express.static(__dirname + '/static/assets'))
 app.use(cors({ origin: 'http://localhost:4200'}));

@@ -1,7 +1,7 @@
 const portfolio_controller = require('../controller/portfolio/portfolio');
-
 const bodyParser = require('body-parser');
 const app = require('../index.js');
+
 
 bodyParser.urlencoded({ extended: true })
 bodyParser.json({ extended: true })
