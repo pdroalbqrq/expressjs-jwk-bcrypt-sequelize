@@ -6,7 +6,7 @@ var imagem;
 
 
 const storage = multer.diskStorage({
-  destination: path.join(process.cwd(), "/static/assets/images"),
+  //destination: path.join(process.cwd(), "/static/assets/images"),
   filename: function(req, file, cb) {
     cb(
       null,
