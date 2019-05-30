@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = module.exports = express();
 require("dotenv").config();
 
-//app.use(express.static(__dirname + '/static/assets'))
+// app.use(express.static(__dirname + '/static/assets'))
 app.use(cors({ origin: process.env.URL_ORIGIN}));
 
 const clientes = require('./rotas/cliente')
@@ -14,6 +14,7 @@ const funcionamento = require('./rotas/funcionamento')
 const noticia = require('./rotas/noticia')
 const institucional = require('./rotas/institucional')
 const portfolio = require('./rotas/portfolio')
+const imagem = require('./rotas/imagem');
  
 app.use('/', clientes);
 
@@ -30,6 +31,8 @@ app.use('/', noticia);
 app.use('/', institucional);
 
 app.use('/', portfolio)
+
+app.use('/', imagem)
 
 app.listen(process.env.PORT || '3000', ()=>{
     console.log('ouvindo na porta 3000');

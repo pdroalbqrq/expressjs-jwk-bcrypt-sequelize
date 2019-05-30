@@ -1,4 +1,5 @@
 const noticia_controller = require('../controller/noticia/noticia');
+const multer = require('multer');
 const multerFile = require('../middleware/multer')
 const bodyParser = require('body-parser');
 const app = require('../index.js');
@@ -11,7 +12,7 @@ app.get('/noticia', noticia_controller.noticia);
 
 app.put('/editnoticia/:id/:userId', noticia_controller.alterNoticia);
 
-app.post('/addnoticia', noticia_controller.postImagem);
+app.post('/addnoticia', multer(multerFile).single('file') ,noticia_controller.postImagem);
 
 module.exports = function(app) {
 }

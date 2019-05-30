@@ -5,19 +5,19 @@ const path = require("path");
 var imagem;
 
 
-const storage = multer.diskStorage({
-  //destination: path.join(process.cwd(), "/static/assets/images"),
-  filename: function(req, file, cb) {
-    cb(
-      null,
-      file.fieldname + "-" + 'foto' + path.extname(file.originalname)
-    );
-  }
-});
+// const storage = multer.diskStorage({
+//   //destination: path.join(process.cwd(), "/static/assets/images"),
+//   filename: function(req, file, cb) {
+//     cb(
+//       null,
+//       file.fieldname + "-" + 'foto' + path.extname(file.originalname)
+//     );
+//   }
+// });
 
-const upload = multer({
-  storage: storage
-}).single("noticia");
+// const upload = multer({
+//   storage: storage
+// }).single("noticia");
 
 exports.noticia = (req, res) => {
   Noticia.findAll({}).then(result => {
@@ -47,14 +47,14 @@ exports.alterNoticia = (req, res) => {
   }
 };
 
-exports.postImagem = async (req, res) => {
- 
-  await upload(req, res, err => {
-    if (err) {
-      return res.status(400).send(err);
-    } else {
-      imagem = req.file;
-      console.log(imagem);
-    }
-  });
+exports.postImagem = (req, res) => {
+  console.log(req.file);
+  // await upload(req, res, err => {
+  //   if (err) {
+  //     return res.status(400).send(err);
+  //   } else {
+  //     imagem = req.file;
+  //     console.log(imagem);
+  //   }
+  // });
 };
