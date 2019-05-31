@@ -21,7 +21,6 @@ const Noticia = db.sequelize.define("noticia", {
     type: db.Sequelize.STRING,
     allowNull: false,
     validate: {
-      len: [4, 500],
       notNull: true
     }
   }

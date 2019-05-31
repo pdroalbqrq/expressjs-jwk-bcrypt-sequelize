@@ -4,7 +4,17 @@ const app = module.exports = express();
 require("dotenv").config();
 
 // app.use(express.static(__dirname + '/static/assets'))
-app.use(cors({ origin: process.env.URL_ORIGIN}));
+var whitelist = [process.env.URL_ORIGIN1, process.env.URL_ORIGIN2 ]
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+app.use(cors(corsOptions));
 
 const clientes = require('./rotas/cliente')
 const usuarios = require('./rotas/usuario')
