@@ -7,6 +7,14 @@ exports.getImages = async (req,res)=>{
     });
 
 }
+
+exports.getImage = async (req,res)=>{
+    imagepk = req.params.id
+    Imagem.findByPk(imagepk).then((imagens)=>{
+        res.json(imagens);
+    });
+
+}
 exports.postImagem = async (req, res) => {
     const { originalname: nome, size, key, location: url = "" } = req.file
     const image = await Imagem.create({
@@ -17,4 +25,3 @@ exports.postImagem = async (req, res) => {
    })
    return res.json(image);
   };
-  

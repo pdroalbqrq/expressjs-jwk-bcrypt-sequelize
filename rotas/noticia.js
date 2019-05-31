@@ -10,9 +10,8 @@ app.use(bodyParser.json());
 
 app.get('/noticia', noticia_controller.noticia);
 
-app.put('/editnoticia/:id/:userId', noticia_controller.alterNoticia);
+app.put('/editnoticia/:id/:userId/:imagemId', noticia_controller.alterNoticia);
 
-app.post('/addnoticia', multer(multerFile).single('file') ,noticia_controller.postImagem);
 
 module.exports = function(app) {
 }

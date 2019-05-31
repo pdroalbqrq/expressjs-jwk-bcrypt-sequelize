@@ -4,21 +4,6 @@ const multer = require("multer");
 const path = require("path");
 var imagem;
 
-
-const storage = multer.diskStorage({
-  //destination: path.join(process.cwd(), "/static/assets/videos"),
-  filename: function(req, file, cb) {
-    cb(
-      null,
-      file.fieldname + "-" + 'video' + path.extname(file.originalname)
-    );
-  }
-});
-
-const upload = multer({
-  storage: storage
-}).single("institucional");
-
 exports.institucional = (req, res) => {
   Institucional.findAll({}).then(result => {
     res.send(result);

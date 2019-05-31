@@ -3,31 +3,6 @@ const multer = require("multer");
 const path = require("path");
 
 
-const storage = multer.diskStorage({
-  //destination: path.resolve(__dirname, '..', '..', 'static','assets','images'),
-    filename: function(req, file, cb) {
-      cb(
-        null,
-        file.fieldname + "-" + 'foto' + path.extname(file.originalname)
-      );
-    }
-  });
-  
-  const upload = multer({
-    storage: storage
-  })
-
-  exports.portfolioImage = async (req, res) => {
-    await upload.single(req.params.card)(req, res, err => {
-      if (err) {
-        console.log(err);
-        return res.status(400).send(err);
-      } else {
-        imagem = req.file;
-        console.log('deu certo');
-      }
-    });
-  };
 
 exports.portfolios = (req, res) => {
   try {
@@ -55,7 +30,8 @@ exports.alterPortfolio = (req, res) => {
     Portfolio.update({
         title,
         description,
-        aparece
+        aparece,
+        imagemId: req.params.imageId
     },
     {
       where: { id: req.params.id }

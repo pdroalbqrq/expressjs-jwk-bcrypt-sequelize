@@ -9,32 +9,6 @@ const Op = dbsequelize.Sequelize.Op;
 
 const jwt = require("jsonwebtoken");
 
-
-const storage = multer.diskStorage({
-    //destination: path.resolve(__dirname, '..', '..', '/static/assets/images'),
-    filename: function(req, file, cb) {
-      cb(
-        null,
-        file.fieldname + "-" + 'foto' + path.extname(file.originalname)
-      );
-    }
-  });
-  
-  const upload = multer({
-    storage: storage
-  })
-
-  exports.userImage = async (req, res) => {
-    await upload.single(req.params.nome)(req, res, err => {
-      if (err) {
-        return res.status(400).send(err);
-      } else {
-        imagem = req.file;
-        console.log('deu certo');
-      }
-    });
-  };
-
 const generateToken = params => {
   return jwt.sign(params, authConfig.secret, {
     expiresIn: 86400
@@ -96,7 +70,8 @@ exports.usuario = (req, res) => {
       email,
       senha,
       numero,
-      descricao
+      descricao,
+      imagemId: req.params.id
     }).then(() => User.findOrCreate({ where: { email, numero }}))
       .then(user => {
     

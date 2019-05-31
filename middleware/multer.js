@@ -4,11 +4,7 @@ const crypto = require("crypto");
 const multerS3 = require("multer-s3");
 const aws = require("aws-sdk");
 
-  var s3 = new aws.S3({
-    secretAccessKey: 'p5mekNa8yLw3vdKa/nLaT8GmHUnV26cmeu6sUgt0',
-    accessKeyId: 'AKIATNAFHPCHDB3YEGI3',
-    region: 'us-east-1'
-  })
+  var s3 = new aws.S3()
 
 const storageTypes = {
   local: multer.diskStorage({
