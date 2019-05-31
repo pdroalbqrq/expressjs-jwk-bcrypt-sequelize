@@ -58,7 +58,8 @@ exports.createPortfolio = async(req, res) => {
    await Portfolio.create({
         title,
         description,
-        aparece
+        aparece,
+        imagemId: req.params.id
     }).then(result =>{
         res.send(result);
         console.log(req.body);
