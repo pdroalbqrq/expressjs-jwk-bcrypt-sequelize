@@ -1,14 +1,15 @@
 const Noticia = require("../../models/Noticia");
-const fs = require("fs");
-const multer = require("multer");
-const path = require("path");
-var imagem;
-
+const User = require("../../models/User");
+const Imagem = require("../../models/Imagem");
 
 exports.noticia = (req, res) => {
-  Noticia.findAll({}).then(result => {
+  
+  Noticia.belongsTo(User, {foreignKey: 'usuarioId'})
+  Noticia.belongsTo(Imagem, {foreignKey: 'imagemId'})
+  Noticia.findAll({ include : [ User, Imagem ] }).then(result => {
     res.send(result);
   });
+
 };
 
 exports.alterNoticia = (req, res) => {

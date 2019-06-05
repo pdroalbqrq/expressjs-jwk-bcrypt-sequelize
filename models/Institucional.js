@@ -10,15 +10,15 @@ const Institucional = db.sequelize.define("institucional", {
     }
   },
   description: {
-    type: db.Sequelize.STRING,
+    type: db.Sequelize.TEXT,
     allowNull: false,
     validate: {
-      len: [4, 400],
+      min: 5,
       notNull: true
     }
   }
 });
 
 //db.sequelize.sync({ force: true })
-// db.sequelize.sync({ alter: true })
+//db.sequelize.sync({ alter: true })
 module.exports = Institucional;

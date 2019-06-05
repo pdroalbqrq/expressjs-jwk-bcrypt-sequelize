@@ -33,7 +33,7 @@ const Cliente = db.sequelize.define('cliente', {
             type: db.Sequelize.STRING,
             allowNull: false,
             validate:{
-                len: [4,150],
+                len: [4,500],
                 notNull: true, 
             },      
         }

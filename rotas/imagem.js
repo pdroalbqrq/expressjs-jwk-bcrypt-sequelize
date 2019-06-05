@@ -10,7 +10,9 @@ app.use(bodyParser.json());
 
 app.get('/imagens' ,image_controller.getImages);
 
-app.get('/imagens/:id' ,image_controller.getImage);
+app.get('/imagem/' ,image_controller.getImage);
+
+app.delete('/imagem/:id', image_controller.deleteImagem);
 
 app.post('/addimagem', multer(multerFile).single('file') ,image_controller.postImagem);
 

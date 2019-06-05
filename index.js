@@ -14,7 +14,7 @@ var corsOptions = {
     }
   }
 }
-app.use(cors(corsOptions));
+app.use(cors());
 
 const clientes = require('./rotas/cliente')
 const usuarios = require('./rotas/usuario')

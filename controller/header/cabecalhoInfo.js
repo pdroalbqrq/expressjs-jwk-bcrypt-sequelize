@@ -1,14 +1,18 @@
 const Cabecalho = require("../../models/CabecalhoInfo");
+const User = require("../../models/User");
 
 exports.cabecalhos = (req, res) => {
-  Cabecalho.findAll({}).then(result => {
+
+  Cabecalho.belongsTo(User, {foreignKey: 'usuarioId'})
+  Cabecalho.findAll({ include : User }).then(result => {
     res.send(result);
   });
+  
 };  
 
 exports.alterHeader = (req, res) => {
   let header = req.body;
-  const { social, email, numero } = req.body;
+  const { social, email, phone:numero } = req.body;
 
   Cabecalho.update(
     {

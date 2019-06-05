@@ -17,6 +17,8 @@ app.get('/perfil',usuario_controller.perfil);
 
 app.put('/alterperfil/:id/:userId',usuario_controller.alterPerfil);
 
+app.get('/usuario/imagem/:id/:imagemId',usuario_controller.mudarImagem);
+
 app.get('/usuarios/verificar/:email/:numero?',usuario_controller.usuario_verificarEmailNumero);
 
 app.delete('/deleteusuario/:id',usuario_controller.destroy_usuario);

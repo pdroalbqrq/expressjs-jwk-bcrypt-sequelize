@@ -10,7 +10,5 @@ app.get('/institucional', institucional_controller.institucional);
 
 app.put('/editinstitucional/:id/:userId', institucional_controller.alterInstitucional);
 
-app.post('/addinstitucional', institucional_controller.postVideo);
-
 module.exports = function(app) {
 }

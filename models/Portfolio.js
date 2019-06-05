@@ -10,10 +10,10 @@ const Portfolio = db.sequelize.define("portfolio", {
     }
   },
   description: {
-    type: db.Sequelize.STRING,
+    type: db.Sequelize.TEXT,
     allowNull: false,
     validate: {
-      len: [4, 500],
+      min: 5,
       notNull: true
     }
   },

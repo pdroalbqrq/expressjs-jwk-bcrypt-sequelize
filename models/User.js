@@ -3,7 +3,8 @@ const bcrypt = require("bcryptjs");
 const cabecalho = require('./CabecalhoInfo'); 
 const funcionamento = require('./Funcionamento'); 
 const noticia = require('./Noticia');
-const institucional = require('./Institucional'); 
+const institucional = require('./Institucional');
+const Portfolio = require('./Portfolio'); 
 
 const User = db.sequelize.define("usuarios", {
   nome: {
@@ -72,7 +73,8 @@ User.beforeCreate("Criptografar", async user => {
 User.hasMany(User);
 User.hasMany(cabecalho);
 User.hasMany(funcionamento);
-User.hasMany(noticia);
+User.hasMany(Portfolio);
+User.hasMany(noticia, {foreignKey: 'usuarioId'});
 User.hasMany(institucional);
 
 //db.sequelize.sync({ force: true })

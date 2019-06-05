@@ -2,8 +2,7 @@ const User = require("../../models/User.js");
 const dbsequelize = require('../../connection/sequelize-connection');
 const bcrypt = require("bcryptjs");
 const authConfig = require("../../config/auth");
-const multer = require("multer");
-const path = require("path");
+const Imagem = require("../../models/Imagem");
 
 const Op = dbsequelize.Sequelize.Op;
 
@@ -27,13 +26,26 @@ exports.usuarios = (req, res) => {
 
 exports.perfil = (req, res) => {
   try {
-    User.findAll({ where: { aparece: 1 } }).then(result => {
+
+    User.belongsTo(Imagem, { foreignKey: "imagemId" });
+    User.findAll({ where: { aparece: 1 },include : Imagem }).then(result => {
       res.send(result);
     });
   } catch (err) {
     res.status(400).send({ error: "A busca falhou" });
   }
 };
+
+exports.mudarImagem = (req,res) =>{
+  const { imagemId,id } = req.params
+  User.update({
+    imagemId
+  },{
+    where: { id }
+  }).then((result)=>{
+    res.send(result)
+  })
+}
 
 exports.alterPerfil = (req, res) => {
   const { aparece } = req.body
@@ -54,8 +66,9 @@ exports.alterPerfil = (req, res) => {
 };
 
 exports.usuarioById = (req, res) => {
+  User.belongsTo(Imagem, { foreignKey: "imagemId" });
   let idUser = req.params.id;
-  User.findByPk(idUser).then(data => {
+  User.findByPk(idUser,{ include : Imagem}).then(data => {
     res.send(data);
   });
 };

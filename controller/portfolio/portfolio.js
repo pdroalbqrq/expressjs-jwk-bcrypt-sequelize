@@ -1,12 +1,15 @@
 const Portfolio = require("../../models/Portfolio");
-const multer = require("multer");
-const path = require("path");
+const Imagem = require("../../models/Imagem");
+const User = require("../../models/User");
 
 
 
 exports.portfolios = (req, res) => {
   try {
-    Portfolio.findAll({  where: { aparece: 1 }  }).then(result => {
+
+    Portfolio.belongsTo(User, { foreignKey: "usuarioId" });
+    Portfolio.belongsTo(Imagem, { foreignKey: "imagemId" });
+    Portfolio.findAll({  where: { aparece: 1 },include : [ Imagem, User ]  }).then(result => {
       res.send(result);
     });
   } catch (err) {

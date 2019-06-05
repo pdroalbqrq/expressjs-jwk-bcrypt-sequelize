@@ -60,4 +60,3 @@ exports.cliente_numero = (req,res) =>{
         res.send(data)
     })
 }
-
